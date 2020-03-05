@@ -2,16 +2,22 @@ import java.util.Scanner;
 
 public class FactorionNumber {
 
+    public static final String INITIAL_MESSAGE = "Enter the numbers you want to check separated by new line. Press Ctrl + D to finish.";
+    public static final String VALIDATION_MESSAGE_NOT_A_NUMBER = "Please insert a valid number.";
+    public static final String VALIDATION_MESSAGE_NEGATIVE_NUMBER = "No negative numbers allowed.";
+    public static final String MESSAGE_CONFIRMED_FACTORION = "The number is a factorion!";
+    public static final String MESAGE_NOT_A_FACTORION = "The number is not a factorion!";
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
-        System.out.println("Enter the numbers you want to check separated by new line. Press Ctrl + D to finish.");
+        System.out.println(INITIAL_MESSAGE);
 
         String userInput;
         while(scanner.hasNext()) {
             userInput = scanner.next();
             if (validateUserInput(userInput)) {
                 int number = Integer.parseInt(userInput);
-                System.out.println(isFactorion(number) ? "The number is a factorion!" : "The number is not a factorion!");
+                System.out.println(isFactorion(number) ? MESSAGE_CONFIRMED_FACTORION : MESAGE_NOT_A_FACTORION);
             }
         }
     }
@@ -20,12 +26,12 @@ public class FactorionNumber {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            System.out.println("Please insert a valid number.");
+            System.out.println(VALIDATION_MESSAGE_NOT_A_NUMBER);
             return false;
         }
 
         if(Integer.parseInt(userInput) < 0) {
-            System.out.println("No negative numbers allowed.");
+            System.out.println(VALIDATION_MESSAGE_NEGATIVE_NUMBER);
             return false;
         }
 
